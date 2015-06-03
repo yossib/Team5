@@ -26,4 +26,5 @@ class Profile extends CI_Controller {
   	$content = array("content"=>"profile_edit.php");
   	$this->load->view('layouts/layout_two_coll.php', $content);
   }
+  
 } 
