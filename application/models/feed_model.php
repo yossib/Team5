@@ -48,7 +48,7 @@ class Feed_model extends CI_Model {
   }
 
   public function saveNewPost($userId, $content){
-    $date = new DateTime();
+    $date = new DateTime(null, new DateTimeZone("Asia/Tel_Aviv"));
     $data = array(
       'user_id' => $userId,
       'content' => $content,
@@ -58,7 +58,7 @@ class Feed_model extends CI_Model {
   }
 
   public function saveNewComment($userId, $postId, $content){
-    $date = new DateTime();
+    $date = new DateTime(null, new DateTimeZone("Asia/Tel_Aviv"));
     $data = array(
       'user_id' => $userId,
       'post_id' => $postId,
