@@ -25,5 +25,6 @@ class Profile extends CI_Controller {
     $user = $this->User->db->getWhere('users',array('id' => $id))->result();
   	$content = array("content"=>"profile_edit.php");
   	$this->load->view('layouts/layout_two_coll.php', $content);
+  	
   }
 } 
