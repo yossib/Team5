@@ -9,6 +9,13 @@
 class Feed extends CI_Controller{
 
   /**
+   * ToDo:Return the feed template
+   */
+  public function index(){
+
+  }
+
+  /**
    * @param int $amount
    * @param bool $since
    */
