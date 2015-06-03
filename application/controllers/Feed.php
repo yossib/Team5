@@ -12,7 +12,8 @@ class Feed extends CI_Controller{
    * ToDo:Return the feed template
    */
   public function index(){
-
+    $content = array("content"=>"feed.php");
+    $this->load->view('layouts/bootstrap.php', $content);
   }
 
   /**
