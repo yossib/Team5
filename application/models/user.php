@@ -1,6 +1,7 @@
 <?php
 
 class User extends  CI_Model {
+  const TABLE = 'users';
   
   protected $id;
   protected $first_name;
@@ -26,4 +27,35 @@ class User extends  CI_Model {
     $this->$field_name = $field_value;
   }
 
+  function load($id) {
+  	$query = $this->db->getWhere(self::TABLE,array('id' => $id));
+  	
+  	foreach ($query->result() as $key=>$value) {
+  		$this->__set($key, $value);
+  	}
+  	
+  	return $this;
+  }
+  
+  
+  //#TODO validate $params 
+  function save($id,$params) {
+  	
+  	$flag = true;
+  	
+  	try {
+  		if(!empty($id)){
+	  		$this->db->where('id', $id);
+	  		$this->db->update(self::TABLE, $params);
+  		}else{
+  			$this->db->insert(self::TABLE, $params);
+  			$id = $this->db->insert_id();
+  		}
+  	} catch (Exception $e) {
+  		$flag = false;
+  	}
+    	
+  	return $flag;
+  }
+  
 }

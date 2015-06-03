@@ -1,4 +1,5 @@
 <?php
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Profile extends CI_Controller {
 
@@ -9,20 +10,24 @@ class Profile extends CI_Controller {
   }
 
   public function view($id){
-    $user = $this->User->db->getWhere('users',array('id' => $id))->result();
-    $content = array("content"=>"profile_view.php");
-    $this->load->view('layouts/layout_two_coll.php', $content);
+  	if (!empty($id)){
+	  	$user = $this->User->load($id);
+	  	
+	    $content = array("content"=>"profile_view.php");
+	    $this->load->view('layouts/layout_two_coll.php', $content);
+  	}else {
+  		//#TODO redirect 
+  	}
   }
   
   public function edit($id){
     $post = $this->input->post();
    
     if(!empty($post)){
-    	$this->User->db->where('id', $id);
-    	$this->User->db->update('users', $post);
+    	$isSaved= $this->User->save($id,$post);
+    	$user = $this->User->load($id);
     }
     
-    $user = $this->User->db->getWhere('users',array('id' => $id))->result();
   	$content = array("content"=>"profile_edit.php");
   	$this->load->view('layouts/layout_two_coll.php', $content);
   }
