@@ -28,11 +28,11 @@
     $.each(data, function(k, entry){
       var post = $(postTemplate);
       post.data(entry);
-      $(".panel-title", post).html(entry.created_at + ", By: " + entry.name);
+      $(".panel-title", post).html(entry.created_at + ", By: " + entry.first_name + " " + entry.last_name);
       $(".panel-body-content", post).html(entry.content);
       $.each(entry.comments, function(k, c){
         var comment = $(commentTemplate);
-        $(".panel-title", comment).html("By: " + c.name);
+        $(".panel-title", comment).html("By: " + c.first_name + " " + c.last_name);
         $(".panel-body", comment).html(c.content);
         $(".panel-comments",post).append(comment);
       })

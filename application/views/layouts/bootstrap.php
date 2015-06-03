@@ -37,6 +37,7 @@
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <nav class="navbar navbar-inverse navbar-fixed-top">
+  <img src="https://lh3.googleusercontent.com/-m_0UufORqvs/VW9TtkK8SNI/AAAAAAAAAAY/vBM9GC0JCeQ/w727-h225-no/somoto.gif" style="float: left"/>
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -45,7 +46,6 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Project name</a>
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
