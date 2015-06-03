@@ -10,6 +10,8 @@ class User extends  CI_Model {
   protected $position;
   protected $description;
   protected $work_start_date ;
+  protected $type;
+  protected $password;
   protected $active;
   
   function __construct() {
