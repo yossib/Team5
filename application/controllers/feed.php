@@ -12,7 +12,8 @@ class Feed extends CI_Controller{
    * ToDo:Return the feed template
    */
   public function index(){
-    $content = array("content"=>"feed.php");
+    $upcomingBirthdays = $this->_getUpcomingBirthdays();
+    $content = array("content"=>"feed.php","content_data"=>array('upcomingBirthdays' => $upcomingBirthdays));
     $this->load->view('layouts/bootstrap.php', $content);
   }
 
@@ -81,7 +82,7 @@ class Feed extends CI_Controller{
     }
   }
 
-  public function getUpcomingBirthdays($numDays = 10){
+  private function _getUpcomingBirthdays($numDays = 10){
     $this->load->database();
     $date = new DateTime();
     $users = array();
@@ -91,7 +92,7 @@ class Feed extends CI_Controller{
       $users = array_merge($users,$birthday_users_query->result_array());
       $date->modify('1 day');
     }
-    echo json_encode($users);
+    return $users;
   }
 
 }

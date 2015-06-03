@@ -5,7 +5,7 @@
   $(document).ready(function(){
     $("#newPost").on("click",".makePost",makePost);
     $(document).on("click",".makeNewComment", makeComment);
-  })
+  });
   function get_latest_posts(){
     console.log('here');
     var url = "http://localhost/feed/getrecentposts"
@@ -95,6 +95,25 @@
 
 
 </script>
+<style type="text/css">
+  #upcomingBirthdays {
+    text-align: left;
+  }
+  #upcomingBirthdays p {
+    font-weight: bold;
+  }
+</style>
+<?php if(count($upcomingBirthdays)){ ?>
+<div id="upcomingBirthdays">
+<p>Upcoming birthdays:</p>
+  <ul>
+  <?php foreach($upcomingBirthdays as $birthday){
+    $birth_date = new DateTime($birthday['birthday']);?>
+    <li><a href="/profile/<?=$birthday['id']?>"><?=$birthday['first_name']?> <?=$birthday['last_name']?></a>:  <?=$birth_date->format('d/m')?></li>
+  <?php } ?>
+  </ul>
+</div>
+<?php } ?>
 <h1>Somoto Feed By Team5!</h1>
 <div class="input-group" id="newPost">
   <span class="input-group-btn makePost" style="vertical-align: top">
