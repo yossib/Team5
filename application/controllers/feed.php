@@ -81,9 +81,14 @@ class Feed extends CI_Controller{
   }
 
   public function getUpcomingBirthdays($numDays = 10){
-    $today = new DateTime();
-    $birthday_users_query = $this->User->db->where(array('MONTH(birthday)' => intval($today->format('m')), 'DAY(birthday)' => intval($today->format('d'))));
-    $birthday_users = $birthday_users_query->result_array();
+    $date = new DateTime();
+    $users = array();
+    for($i=0;$i<=$numDays;$i++){
+      $birthday_users_query = $this->User->db->where(array('MONTH(birthday)' => intval($date->format('m')), 'DAY(birthday)' => intval($date->format('d'))));
+      $users = array_merge($users,$birthday_users_query->result_array());
+      $date->add('1 day');
+    }
+    echo json_encode($users);
   }
 
 }
