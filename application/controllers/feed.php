@@ -55,7 +55,7 @@ class Feed extends CI_Controller{
   }
 
   public function newBirthdayPost(){
-    $this->load->model('User');
+    $this->load->database();
     $system_user_query = $this->User->db->getWhere('users',array('system',1));
     $system_user = $system_user_query->row_array();
 
@@ -81,12 +81,14 @@ class Feed extends CI_Controller{
   }
 
   public function getUpcomingBirthdays($numDays = 10){
+    $this->load->database();
     $date = new DateTime();
     $users = array();
     for($i=0;$i<=$numDays;$i++){
-      $birthday_users_query = $this->User->db->where(array('MONTH(birthday)' => intval($date->format('m')), 'DAY(birthday)' => intval($date->format('d'))));
+      $this->db->where(array('MONTH(birthday)' => intval($date->format('m')), 'DAY(birthday)' => intval($date->format('d'))));
+      $birthday_users_query = $this->db->get('users');
       $users = array_merge($users,$birthday_users_query->result_array());
-      $date->add('1 day');
+      $date->modify('1 day');
     }
     echo json_encode($users);
   }
