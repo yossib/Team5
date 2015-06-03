@@ -21,6 +21,9 @@ class Feed extends CI_Controller{
    * @param bool $since
    */
   public function getRecentPosts($amount=10, $since = false){
+    $this->load->model('feed_model');
+    $posts = $this->feed_model->getRecentPosts();
+//  var_dump($posts);die;
     header('Content-Type: application/json');
     echo '
   [{ "userid" : 1,
