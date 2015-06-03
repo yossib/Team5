@@ -1,4 +1,5 @@
 <script type="text/javascript">
+  var refresh_url = 'http://localhost/feed/'
   var usedId = 1;
   $(document).ready(get_latest_posts());
   $(document).ready(function(){
@@ -69,21 +70,25 @@
     '</div>'
 
   function makePost(){
-    var content = $("#newPostContent").html();
+    var content = $("#newPostContent").val();
+    console.log(content);
     var url = "http://localhost/feed/savepost";
     $.post(url , { userId : usedId, content : content }, function(data){
       console.log(data);
+      location.href = refresh_url;
+
     } , "json");
   }
 
   function makeComment(){
     console.log('here');
     var post = $(this).closest(".post");
-    var content = $(".newCommentContent", post).html();
+    var content = $(".newCommentContent", post).val();
     var url = "http://localhost/feed/savecomment";
     postId = post.data().post_id;
     $.post(url , { userId : usedId, "postId" : postId, content : content }, function(data){
       console.log(data);
+      location.href = refresh_url;
     } , "json");
   }
 

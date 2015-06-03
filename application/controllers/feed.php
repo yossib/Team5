@@ -25,7 +25,7 @@ class Feed extends CI_Controller{
     $feed = $this->feed_model;
     /* @var $feed Feed_model */
     $posts = $feed->getRecentPosts();
-
+    $posts = array_reverse($posts);
     header('Content-Type: application/json');
     echo json_encode($posts);
 	}
@@ -33,6 +33,10 @@ class Feed extends CI_Controller{
 	public function savePost(){
 		$userId = $this->input->post('userId');
 		$content = $this->input->post('content');
+    $this->load->model('feed_model');
+    $feed = $this->feed_model;
+    /* @var $feed Feed_model */
+    $feed->saveNewPost($userId, $content);
 		header('Content-Type: application/json');
 		echo json_encode(array("userId" => $userId, "content" => $content));
 	}
@@ -42,6 +46,10 @@ class Feed extends CI_Controller{
 		$postId = $this->input->post('postId');
 		$content = $this->input->post('content');
 		header('Content-Type: application/json');
+    $this->load->model('feed_model');
+    $feed = $this->feed_model;
+    /* @var $feed Feed_model */
+    $feed->saveNewComment($userId,$postId, $content);
 		echo json_encode(array("userId" => $userId,"postId" => $postId, "content" => $content));
 	}
 
