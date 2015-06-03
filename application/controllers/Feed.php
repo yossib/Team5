@@ -47,4 +47,36 @@ class Feed extends CI_Controller{
 
   }
 
+  public function newBirthdayPost(){
+    $this->load->model('User');
+    $system_user_query = $this->User->db->getWhere('users',array('system',1));
+    $system_user = $system_user_query->row_array();
+
+    $today = new DateTime();
+    $birthday_users_query = $this->User->db->where(array('MONTH(birthday)' => intval($today->format('m')), 'DAY(birthday)' => intval($today->format('d'))));
+    $birthday_users = $birthday_users_query->result_array();
+    $num_birthday_users = count($birthday_users);
+
+    if($num_birthday_users > 0){
+      $content = 'Happy birthday to ';
+      $counter = 1;
+      foreach($birthday_users as $user){
+        if($counter > 1 && $counter == $num_birthday_users){
+          $content .= 'and';
+        } elseif ($counter > 1 && $counter < $num_birthday_users){
+          $content .= ', ';
+        }
+        $content .= '<a href="/profile/' . $user['id'] . '">' . $user['first_name'] . ' ' . $user['last_name'] . '</a>';
+      }
+      $content .= '!';
+      $this->savePost($system_user['id'],$content);
+    }
+  }
+
+  public function getUpcomingBirthdays($numDays = 10){
+    $today = new DateTime();
+    $birthday_users_query = $this->User->db->where(array('MONTH(birthday)' => intval($today->format('m')), 'DAY(birthday)' => intval($today->format('d'))));
+    $birthday_users = $birthday_users_query->result_array();
+  }
+
 }

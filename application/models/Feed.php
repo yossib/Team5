@@ -16,7 +16,7 @@ class Feed_model extends CI_Model {
       users.last_name as last_name,
       users.avatar as avatar,
       posts.content as content,
-      ')->from('posts')->join('users', 'posts.user_id = users.id')->order_by('created_at','desc');
+      ')->from('posts')->join('users', 'posts.user_id = users.id', 'left')->order_by('created_at','desc');
     if($since){
       $this->db->where('created_at > ',$since);
     } else {
@@ -36,7 +36,7 @@ class Feed_model extends CI_Model {
         users.last_name as last_name,
         users.avatar as avatar,
         posts_comments.content as content,
-      ')->from('posts_comments')->join('users', 'posts_comments.user_id = users.id')->where('post_id',$post['post_id'])->order_by('created_at','desc');
+      ')->from('posts_comments')->join('users', 'posts_comments.user_id = users.id', 'left')->where('post_id',$post['post_id'])->order_by('created_at','desc');
       $comments_query = $this->db->get();
       foreach($comments_query->result_array() as $comment_record){
         $post['comments'][] = $comment_record;
