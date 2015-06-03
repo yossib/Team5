@@ -1,1 +1,3 @@
- $('.priority').each(function () { this.style.backgroundColor = "red"; })
+$(function() { 
+  $('.priority').each(function () { this.style.backgroundColor = "red"; })
+});
