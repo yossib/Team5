@@ -12,7 +12,7 @@ class User extends CI_Controller {
 	public function index($limit, $offset)
 	{	
 	
-		$query = $query = $this->User->db->get_where('users', array('active' => true), $limit, $offset);
+		$query = $this->User->db->get_where('users', array('active' => true), $limit, $offset);
 		$users = $query->result();
 		
 		$this->load->view('user/list.php');

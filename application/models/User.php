@@ -1,11 +1,12 @@
 <?php
 class User extends  CI_Model {
 	
-	protected  $id;
-	protected $name;
+	protected $id;
+	protected $first_name;
+	protected $last_name;
+    protected $avatar;
 	protected $email;
 	protected $birthday;
-	protected $avatar;
 	protected $position;
 	protected $description;
 	protected $work_start_date ;
