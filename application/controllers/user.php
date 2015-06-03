@@ -2,32 +2,38 @@
 
 class User extends CI_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -  
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in 
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see http://codeigniter.com/user_guide/general/urls.html
-	 */
-	public function index()
+	public function __construct()
 	{
+		parent::__construct();
+		$this->load->model('User');
+	}
+
+	// index.php/user/edit/20/0
+	public function index($limit, $offset)
+	{	
+	
+		$query = $query = $this->User->db->get_where('users', array('active' => true), $limit, $offset);
+		$users = $query->result();
+		
 		$this->load->view('user/list.php');
 	}
-	
-	public function edit()
-	{
+	// index.php/user/edit/123
+	public function edit($id)
+	{   
 		
-		 $user = new User();
+		$query = $this->User->db->get_where('users', array('id' => $id), $limit, $offset);
+		$user = $query->result();
 		
 		$this->load->view('user/edit.php');
+	}
+	// index.php/user/view/123
+	public function view($id)
+	{
+	
+		$query = $this->User->db->get_where('users', array('id' => $id), $limit, $offset);
+		$user = $query->result();
+	
+		$this->load->view('user/view.php');
 	}
 }
 
