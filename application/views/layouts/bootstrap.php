@@ -1,18 +1,3 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: yossi
- * Date: 6/3/15
- * Time: 6:56 PM
- */
-?>
-
-<!-- Latest compiled and minified CSS -->
-
-<!-- Optional theme -->
-
-<!-- Latest compiled and minified JavaScript -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,6 +24,9 @@
   .starter-template {
     padding: 40px 15px;
     text-align: center;
+  }
+  .panel-title{
+    text-align: left;
   }
   .panel-body{
     text-align: left

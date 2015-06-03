@@ -39,12 +39,19 @@ class Feed extends CI_Controller{
 ';
   }
 
-  public function savePost($userId, $content){
-
+  public function savePost(){
+    $userId = $this->input->post('userId');
+    $content = $this->input->post('content');
+    header('Content-Type: application/json');
+    echo json_encode(array("userId" => $userId, "content" => $content));
   }
 
-  public function saveComment($userId, $postId, $content){
-
+  public function saveComment(){
+    $userId = $this->input->post('userId');
+    $postId = $this->input->post('postId');
+    $content = $this->input->post('content');
+    header('Content-Type: application/json');
+    echo json_encode(array("userId" => $userId,"postId" => $postId, "content" => $content));
   }
 
   public function newBirthdayPost(){
