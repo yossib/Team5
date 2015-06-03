@@ -11,24 +11,23 @@ class Feed_model extends CI_Model {
   }
 
   public function getRecentPosts($count = 10, $since = false){
-    $query = 'SELECT * FROM posts ';
     if($since){
-      $query .= 'WHERE created_at > ' . $since . ' ';
+      $this->db->where('created_at > ',$since);
     } else {
-      $query .= 'LIMIT ' . $count;
+      $this->db->limit($count);
     }
-    $db_query = $this->db->query($query);
+    $query = $this->db->get('posts');
 
     $posts = array();
 
-    foreach($db_query->result_array() as $record){
+    foreach($query->result_array() as $record){
       $post = clone $record;
       $user_record = self::$all_users[$post['user_id']];
       $post['first_name'] = $user_record['first_name'];
       $post['last_name'] = $user_record['last_name'];
       $post['avatar'] = $user_record['avatar'];
       $post['comments'] = array();
-      $comments_query = $this->db->query('SELECT * FROM posts_comments WHERE post_id = ' . $post['id'] . ' ORDER BY created_at DESC');
+      $comments_query = $this->db->order_by('created_at','desc')->get_where('posts_comments',array('post_id',$post['id']));
       foreach($comments_query->result_array() as $comment_record){
         $comment = array('comment_id' => $comment_record['id'], 'user_id' => $comment_record['user_id']);
         $user_record = self::$all_users[$comment['user_id']];
