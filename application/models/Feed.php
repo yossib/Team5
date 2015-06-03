@@ -2,39 +2,44 @@
 
 class Feed_model extends CI_Model {
 
-  private static $all_users = array();
-
   public function __construct(){
     parent::__construct();
     $this->load->database();
-    $this->_loadAllUsers();
   }
 
   public function getRecentPosts($count = 10, $since = false){
+    $this->db->select('
+      posts.id as post_id,
+      posts.user_id as user_id,
+      posts.created_at as created_at,
+      users.first_name as first_name,
+      users.last_name as last_name,
+      users.avatar as avatar,
+      posts.content as content,
+      ')->from('posts')->join('users', 'posts.user_id = users.id')->order_by('created_at','desc');
     if($since){
       $this->db->where('created_at > ',$since);
     } else {
       $this->db->limit($count);
     }
-    $query = $this->db->get('posts');
+    $query = $this->db->get();
 
     $posts = array();
-
     foreach($query->result_array() as $record){
-      $post = clone $record;
-      $user_record = self::$all_users[$post['user_id']];
-      $post['first_name'] = $user_record['first_name'];
-      $post['last_name'] = $user_record['last_name'];
-      $post['avatar'] = $user_record['avatar'];
+      $post = $record;
       $post['comments'] = array();
-      $comments_query = $this->db->order_by('created_at','desc')->get_where('posts_comments',array('post_id',$post['id']));
+      $this->db->select('
+        posts_comments.id as comment_id,
+        posts_comments.user_id as user_id,
+        posts_comments.created_at as created_at,
+        users.first_name as first_name,
+        users.last_name as last_name,
+        users.avatar as avatar,
+        posts_comments.content as content,
+      ')->from('posts_comments')->join('users', 'posts_comments.user_id = users.id')->where('post_id',$post['post_id'])->order_by('created_at','desc');
+      $comments_query = $this->db->get();
       foreach($comments_query->result_array() as $comment_record){
-        $comment = array('comment_id' => $comment_record['id'], 'user_id' => $comment_record['user_id']);
-        $user_record = self::$all_users[$comment['user_id']];
-        $comment['first_name'] = $user_record['first_name'];
-        $comment['last_name'] = $user_record['last_name'];
-        $comment['avatar'] = $user_record['avatar'];
-        $post['comments'][] = $comment;
+        $post['comments'][] = $comment_record;
       }
       $posts[] = $post;
     }
@@ -63,11 +68,4 @@ class Feed_model extends CI_Model {
     $this->db->insert('posts_comments',$data);
   }
 
-  private function _loadAllUsers(){
-    $db_query = $this->db->get('users');
-    foreach($db_query->result_array() as $row){
-      self::$all_users[$row['id']] = $row;
-    }
-  }
-
-} 
+}
