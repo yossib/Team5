@@ -21,7 +21,22 @@ class Feed extends CI_Controller{
    * @param bool $since
    */
   public function getRecentPosts($amount=10, $since = false){
-
+    header('Content-Type: application/json');
+    echo '
+  [{ "userid" : 1,
+     "post_id" : 1,
+     "created_at" : "2015-06-01 10:10:10",
+     "name" : "Yossi",
+     "avatar" : "",
+     "content" : "First post",
+     "comments" : [
+                         {
+                          "user_id": 1,
+                          "comment_id": 1,
+                           "name": "Yossi",
+                           "avatar": "",
+                           "content": "First Comment" }]}]
+';
   }
 
   public function savePost($userId, $content){
