@@ -49,9 +49,6 @@
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
       </ul>
     </div><!--/.nav-collapse -->
   </div>
@@ -61,11 +58,13 @@
 
   <div class="starter-template">
     <?php
+    if(empty($content_data)){
+      $content_data = array();
+    }
     if(!empty($content)) {
-      $this->load->view($content);
+      $this->load->view($content,$content_data);
     }
     ?>
-    <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
   </div>
 </div>
 
