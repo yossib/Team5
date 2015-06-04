@@ -37,9 +37,9 @@ class Profile extends CI_Controller {
    
     if(!empty($post)){
       $isSaved= $this->User->save($id,$post);
-      $data = $this->User->load($id);
     }
-    
+
+    $data = $this->User->loadToArray($id);
     $data["content"] ="profile_edit.php";
     $this->load->view('layouts/layout_two_coll.php', $data);
   }
