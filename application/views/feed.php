@@ -116,7 +116,7 @@
 </style>
 <?php if(count($upcomingBirthdays)){ ?>
 <div id="upcomingBirthdays">
-  <h3 style="color: #c0c0c0">Upcoming Birthdays!</h3>
+  <h3 style="color: #FF9696">Upcoming Birthdays!</h3>
   <?php foreach($upcomingBirthdays as $birthday){
     $birth_date = new DateTime($birthday['birthday']);?>
     <div class="alert alert-success" role="alert">
