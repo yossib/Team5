@@ -39,6 +39,8 @@
 */
 
 $route['profile/(:num)'] = 'profile/view/$1';
+$route['event/(:num)'] = 'event/view/$1';
+$route['events'] = 'event/view';
 $route['default_controller'] = "login";
 $route['404_override'] = '';
 
