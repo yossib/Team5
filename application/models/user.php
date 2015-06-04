@@ -18,22 +18,19 @@ class User extends  CI_Model {
   function __construct() {
     parent::__construct();
   }
-  
-  function __get($field_name) {
-    return $this->$field_name;
-  }
+
   function __set($field_name, $field_value){
     $this->$field_name = $field_value;
   }
 
   function getUserByEmail($email)
   {
-    $this -> db -> select('id');
-    $this -> db -> from('users');
-    $this -> db -> where('email', $email);
-    $this -> db -> limit(1);
+    $this->db->select('id, first_name, last_name, avatar');
+    $this->db->from('users');
+    $this->db->where('email', $email);
+    $this->db->limit(1);
 
-    $query = $this -> db -> get();
+    $query = $this->db->get();
 
     if($query -> num_rows() == 1)
     {

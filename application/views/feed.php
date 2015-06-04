@@ -1,6 +1,6 @@
 <script type="text/javascript">
   var refresh_url = 'http://localhost/feed/'
-  var usedId = 1;
+  var usedId = <?php echo $userData['id'] ?>;
   $(document).ready(get_latest_posts());
   $(document).ready(function(){
     $("#newPost").on("click",".makePost",makePost);
