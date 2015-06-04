@@ -26,11 +26,11 @@ class Auth extends CI_Controller
 
         $userInfo = $provider->get_user_info($token);
         $this->load->model('User','',TRUE);
-        $userModel = $this->model->User;
+        $userModel = $this->User;
         /* @var $user User */
-        $user = $userModel->getUserByEmail($user["email"]);
+        $user = $userModel->getUserByEmail($userInfo["email"]);
         if(!$user){
-            $userModel->db->insert('user', array(
+            $userModel->save(null, array(
               "first_name" => $userInfo["first_name"],
               "last_name" => $userInfo["last_name"],
               "email" => $userInfo["email"],
@@ -38,14 +38,14 @@ class Auth extends CI_Controller
             ));
         }
         $this->login($user);
-
+        redirect("http://localhost/feed");
         // Here you should use this information to A) look for a user B) help a new user sign up with existing data.
         // If you store it all in a cookie and redirect to a registration page this is crazy-simple.
-        echo "<pre>Tokens: ";
-        var_dump($token);
-
-        echo "\n\nUser Info: ";
-        var_dump($user);
+//        echo "<pre>Tokens: ";
+//        var_dump($token);
+//
+//        echo "\n\nUser Info: ";
+//        var_dump($user);
       }
 
       catch (OAuth2_Exception $e)
@@ -59,7 +59,6 @@ class Auth extends CI_Controller
   function login($user)
   {
     //query the database
-    var_dump($user);
     if($user)
     {
       $sess_array = array();
@@ -67,7 +66,9 @@ class Auth extends CI_Controller
       {
         $sess_array = array(
           'id' => $row->id,
-          'username' => $row->username
+          'first_name' => $row->first_name,
+          'last_name' => $row->last_name,
+          'avatar' => $row->avatar,
         );
         $this->session->set_userdata('logged_in', $sess_array);
       }

@@ -12,13 +12,14 @@ class Feed extends CI_Controller{
    * ToDo:Return the feed template
    */
   public function index(){
-		if($this->session->userdata('logged_in')){
-
+		$userId = 0;
+    if($this->session->userdata('logged_in')){
+      $userData = $this->session->userdata('logged_in');
 		}else{
-//			redirect('http://localhost/auth/session/google');
+			redirect('http://localhost/auth/session/google');
 		}
     $upcomingBirthdays = $this->_getUpcomingBirthdays();
-    $content = array("content"=>"feed.php","content_data"=>array('upcomingBirthdays' => $upcomingBirthdays));
+    $content = array("content"=>"feed.php","content_data"=>array('upcomingBirthdays' => $upcomingBirthdays),"userData" => $userData);
     $this->load->view('layouts/bootstrap.php', $content);
   }
 
@@ -89,7 +90,7 @@ class Feed extends CI_Controller{
 
   private function _getUpcomingBirthdays($numDays = 10){
     $this->load->database();
-    $date = new DateTime();
+    $date = new DateTime(null, new DateTimeZone("Asia/Tel_Aviv"));
     $users = array();
     for($i=0;$i<=$numDays;$i++){
       $this->db->where(array('MONTH(birthday)' => intval($date->format('m')), 'DAY(birthday)' => intval($date->format('d'))));
