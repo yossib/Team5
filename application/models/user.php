@@ -1,7 +1,6 @@
 <?php
 
 class User extends  CI_Model {
-  const TABLE = 'users';
   
   protected $id;
   protected $first_name;
@@ -27,6 +26,24 @@ class User extends  CI_Model {
     $this->$field_name = $field_value;
   }
 
+  function getUserByEmail($email)
+  {
+    $this -> db -> select('id');
+    $this -> db -> from('users');
+    $this -> db -> where('email', $email);
+    $this -> db -> limit(1);
+
+    $query = $this -> db -> get();
+
+    if($query -> num_rows() == 1)
+    {
+      return $query->result();
+    }
+    else
+    {
+      return false;
+    }
+  }
   function load($id) {
   	$query = $this->db->getWhere(self::TABLE,array('id' => $id));
   	

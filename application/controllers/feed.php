@@ -12,6 +12,11 @@ class Feed extends CI_Controller{
    * ToDo:Return the feed template
    */
   public function index(){
+		if($this->session->userdata('logged_in')){
+
+		}else{
+			redirect('http://localhost/auth/session/google');
+		}
     $upcomingBirthdays = $this->_getUpcomingBirthdays();
     $content = array("content"=>"feed.php","content_data"=>array('upcomingBirthdays' => $upcomingBirthdays));
     $this->load->view('layouts/bootstrap.php', $content);

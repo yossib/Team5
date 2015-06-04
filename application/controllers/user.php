@@ -10,8 +10,7 @@ class User extends CI_Controller {
 
 	// index.php/user/edit/20/0
 	public function index($limit, $offset)
-	{	
-	
+	{
 		$query = $this->User->db->get_where('users', array('active' => true), $limit, $offset);
 		$users = $query->result();
 		
