@@ -7,14 +7,19 @@ class Profile extends CI_Controller {
   {
     parent::__construct();
     $this->load->model('User');
+    $this->load->library('input');
+    $this->load->library('session');
+    $this->load->helper(array('form', 'url'));
+    $this->load->library('form_validation');
+    $this->load->library('security');
   }
 
   public function view($id){
   	if (!empty($id)){
-	  	$user = $this->User->load($id);
+	  	$data =  $this->User->load($id);
 	  	
-	    $content = array("content"=>"profile_view.php");
-	    $this->load->view('layouts/layout_two_coll.php', $content);
+	    $data["content"] ="profile_view.php";
+	    $this->load->view('layouts/layout_two_coll.php', $data);
   	}else {
   		//#TODO redirect 
   	}
@@ -25,11 +30,11 @@ class Profile extends CI_Controller {
    
     if(!empty($post)){
     	$isSaved= $this->User->save($id,$post);
-    	$user = $this->User->load($id);
+    	$data = $this->User->load($id);
     }
     
-  	$content = array("content"=>"profile_edit.php");
-  	$this->load->view('layouts/layout_two_coll.php', $content);
+  	$data["content"] ="profile_edit.php";
+  	$this->load->view('layouts/layout_two_coll.php', $data);
   }
   
 } 
