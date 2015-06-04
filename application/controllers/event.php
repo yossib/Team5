@@ -6,6 +6,12 @@ class Event extends CI_Controller {
     if(!$id){
       $events = $this->db->select('events.*, users.first_name as first_name, users.last_name as last_name')->from('events')->join('users','events.created_by = users.id')->where(array('end_time > ' => date('Y-m-d H:i:s')))->get();
       $content = array("content"=>"event_list.php","content_data"=>array('events' => $events->result_array()),"title" => 'Events');
+      if($this->session->userdata('logged_in')){
+        $userData = $this->session->userdata('logged_in');
+      }
+      if(!empty($userData)){
+        $content["userData"] = $userData;
+      }
       $this->load->view('layouts/bootstrap.php', $content);
     } else {
       $event_query = $this->db->get_where('events',array('id' => $id));
@@ -16,7 +22,10 @@ class Event extends CI_Controller {
       if($this->session->userdata('logged_in')){
         $userData = $this->session->userdata('logged_in');
       }
-      $content = array("content"=>"event_view.php","content_data"=>$event, "title" => $event['short_description'], 'userData' => $userData);
+      $content = array("content"=>"event_view.php","content_data"=>$event, "title" => $event['short_description']);
+      if(!empty($userData)){
+        $content["userData"] = $userData;
+      }
       $this->load->view('layouts/bootstrap.php', $content);
     }
   }

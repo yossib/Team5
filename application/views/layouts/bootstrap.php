@@ -87,6 +87,9 @@
         <li>
           <a href="/feed">Feed</a>
         </li>
+        <li>
+          <a href="/events">Events</a>
+        </li>
         <?php if(isset($userData['id'])){ ?>
           <li><a href="/profile/<?=$userData['id'] ?>">My Profile</a></li>
         <?php } ?>

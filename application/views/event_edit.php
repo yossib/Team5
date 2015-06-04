@@ -1,3 +1,14 @@
+<link rel="stylesheet" type="text/css" href="/css/jquery.datetimepicker.css"/>
+<script src="/js/jquery.datetimepicker.js"></script>
+
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".datetimepicker").datetimepicker({
+			format : 'Y-m-d h:i'
+		});
+	});
+</script>
 <style type="text/css">
   input[type=checkbox]{
     text-align: left;
@@ -11,11 +22,11 @@
 		  </div>
 		   <div class="form-group">
 			<label for="start_time">Start time</label>
-			<input type="text" class="form-control" id="start_time" name="start_time" value="<?=isset($start_time)?$start_time:''?>">
+			<input type="text" class="form-control datetimepicker" id="start_time" name="start_time" value="<?=isset($start_time)?$start_time:''?>">
 		  </div>
 		   <div class="form-group">
 			<label for="end_time">End Time</label>
-			<input type="text" class="form-control" id="end_time" name="end_time" value="<?=isset($end_time)?$end_time:''?>" placeholder="Enter end_time">
+			<input type="text" class="form-control datetimepicker" id="end_time" name="end_time" value="<?=isset($end_time)?$end_time:''?>" placeholder="Enter end_time">
 		  </div>
 		   <div class="form-group">
 			<label for="location">Location</label>
