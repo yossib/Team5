@@ -119,7 +119,6 @@
   </ul>
 </div>
 <?php } ?>
-<h1>Somoto Feed By Team5!</h1>
 <div class="input-group" id="newPost">
   <span class="input-group-btn makePost" style="vertical-align: top">
     <button class="btn btn-default" type="button">+</button>
