@@ -1,9 +1,9 @@
-<h1><?=$short_description?></h1>
-<?=$description?>
+<h1 style="color:#fff"><?=$short_description?></h1>
+<h4 style="color:#fff"><?=$description?></h4>
 <br>
 <br>
-Attending:
-<ul>
+<h4 style="color:#fff">Attending:</h4>
+<div class="list-group">
   <?php
   $attending = false;
   foreach($attendees as $attendee){
@@ -14,9 +14,9 @@ Attending:
     if(isset($userData['id']) && $userData['id'] == $attendee['id']){
       $attending = true;
     }?>
-  <li><a href="/profile/<?=$attendee['id']?>"><?=$name_display?></a></li>
+  <a class="list-group-item" href="/profile/<?=$attendee['id']?>"><?=$name_display?></a>
   <?php } ?>
-</ul>
+</div>
 <?php if(isset($userData['id'])){ ?>
-  You are <?php echo $attending?'':'not '; ?> attending <a href="/event/join/<?=$id?>/<?php echo $attending?0:1; ?>"><?php echo $attending?'Leave':'Join' ?></a>
+  <h3 style="color:#fff">You are <?php echo $attending?'':'not '; ?> attending </h3><span class="label label-danger" onClick="location.href='/event/join/<?=$id?>/><?php echo $attending?0:1; ?>'" style="cursor: pointer"><?php echo $attending?'Leave':'Join' ?></span>
 <?php } ?>
