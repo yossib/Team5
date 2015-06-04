@@ -30,7 +30,7 @@ class Auth extends CI_Controller
         /* @var $user User */
         $user = $userModel->getUserByEmail($userInfo["email"]);
         if(!$user){
-            $userModel->save(array(
+            $userModel->save(null, array(
               "first_name" => $userInfo["first_name"],
               "last_name" => $userInfo["last_name"],
               "email" => $userInfo["email"],

@@ -14,7 +14,8 @@ class User extends  CI_Model {
   protected $type;
   protected $password;
   protected $active;
-  
+  const TABLE = 'users';
+
   function __construct() {
     parent::__construct();
   }
