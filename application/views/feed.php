@@ -116,13 +116,13 @@
 </style>
 <?php if(count($upcomingBirthdays)){ ?>
 <div id="upcomingBirthdays">
-<p>Upcoming birthdays:</p>
-  <ul>
+  <h3 style="color: #c0c0c0">Upcoming Birthdays!</h3>
   <?php foreach($upcomingBirthdays as $birthday){
     $birth_date = new DateTime($birthday['birthday']);?>
-    <li><a href="/profile/<?=$birthday['id']?>"><?=$birthday['first_name']?> <?=$birthday['last_name']?></a>:  <?=$birth_date->format('d/m')?></li>
+    <div class="alert alert-success" role="alert">
+    <a href="/profile/<?=$birthday['id']?>"><?=$birthday['first_name']?> <?=$birthday['last_name']?></a>:  <?=$birth_date->format('d/m')?>
+    </div>
   <?php } ?>
-  </ul>
 </div>
 <?php } ?>
 <div class="input-group" id="newPost">
