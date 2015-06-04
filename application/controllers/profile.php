@@ -16,7 +16,7 @@ class Profile extends CI_Controller {
 
   public function view($id){
   	if (!empty($id)){
-	  	$data =  $this->User->load($id);
+	  	$data["content_data"] =  $this->User->loadToArray($id);
 	  	
 	    $data["content"] ="profile_view.php";
 	    $this->load->view('layouts/layout_two_coll.php', $data);

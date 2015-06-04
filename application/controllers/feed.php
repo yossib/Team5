@@ -63,8 +63,8 @@ class Feed extends CI_Controller{
   public function newBirthdayPost(){
     $this->load->model('feed_model');
     $this->load->database();
-    $system_user_query = $this->db->get_where('users',array('system' => 1));
-    $system_user = $system_user_query->row_array();
+    $admin_user_query = $this->db->get_where('users',array('email' => 'admin@somoto.net'));
+    $admin_user = $admin_user_query->row_array();
 
     $today = new DateTime();
     $birthday_users_query = $this->db->get_where('users',array('MONTH(birthday)' => intval($today->format('m')), 'DAY(birthday)' => intval($today->format('d'))));
@@ -84,7 +84,7 @@ class Feed extends CI_Controller{
         $counter++;
       }
       $content .= '!';
-      $this->feed_model->saveNewPost($system_user['id'],$content);
+      $this->feed_model->saveNewPost($admin_user['id'],$content);
     }
   }
 
