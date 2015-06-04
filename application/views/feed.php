@@ -1,10 +1,16 @@
 <script type="text/javascript">
   var refresh_url = '/feed'
   var usedId = <?php echo $userData['id'] ?>;
+
   $(document).ready(get_latest_posts());
   $(document).ready(function(){
     $("#newPost").on("click",".makePost",makePost);
     $(document).on("click",".makeNewComment", makeComment);
+    $(document).on('focus','textarea',function(){
+      if($(this).val() == 'Make a new post' || $(this).val() == 'comment'){
+        $(this).val("");
+      }
+    });
   });
   function get_latest_posts(){
     console.log('here');
