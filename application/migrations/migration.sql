@@ -5,7 +5,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 04, 2015 at 05:52 AM
+-- Generation Time: Jun 04, 2015 at 09:30 AM
 -- Server version: 5.5.37-0ubuntu0.12.04.1-log
 -- PHP Version: 5.4.30-2+deb.sury.org~precise+1
 
@@ -30,13 +30,22 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `events` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `short_description` varchar(100) NOT NULL,
   `created_by` int(11) NOT NULL,
   `start_time` datetime NOT NULL,
   `end_time` datetime NOT NULL,
   `location` varchar(200) NOT NULL,
   `description` varchar(1000) NOT NULL,
+  `company_event` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `events`
+--
+
+INSERT IGNORE INTO `events` (`id`, `short_description`, `created_by`, `start_time`, `end_time`, `location`, `description`, `company_event`) VALUES
+  (1, 'Party at my house!', 7, '2015-06-06 22:00:00', '2015-06-07 03:00:00', 'Yuval''s house', 'Excellent party!!!', 0);
 
 -- --------------------------------------------------------
 
@@ -46,8 +55,18 @@ CREATE TABLE IF NOT EXISTS `events` (
 
 CREATE TABLE IF NOT EXISTS `event_attendees` (
   `event_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`event_id`,`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `event_attendees`
+--
+
+INSERT IGNORE INTO `event_attendees` (`event_id`, `user_id`) VALUES
+  (1, 2),
+  (1, 4),
+  (1, 7);
 
 -- --------------------------------------------------------
 
@@ -58,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `event_attendees` (
 CREATE TABLE IF NOT EXISTS `posts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `content` varchar(2000) CHARACTER SET latin1 NOT NULL,
+  `content` varchar(2000) CHARACTER SET utf8 NOT NULL,
   `created_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
@@ -109,7 +128,7 @@ INSERT IGNORE INTO `users` (`id`, `first_name`, `last_name`, `avatar`, `email`, 
   (4, 'Eyal', 'Onn', '', 'eyal@genieo.com', '1989-06-04', 'QA manager', 'Pro4life', '2013-08-26', 1, 0),
   (5, 'Alexander', 'Goldshtein', '', 'alex@genieo.com', '1979-08-12', 'Team lead - Dev', 'A major slacker', '2013-05-08', 1, 0),
   (6, 'Dana', 'Fidelmen', '', 'dana@genieo.com', '1993-08-18', 'minor QA', '', '2015-02-04', 1, 0),
-  (7, 'Yuval', 'Zeharhary', 'https://alaska.somoto.org:8443/secure/useravatar?ownerId=yuval&avatarId=11102', 'yuval@somoto.net', '1981-02-02', 'Developer', '', '2013-01-02', 1, 0),
+  (7, 'Yuval', 'Zeharhary', 'https://alaska.somoto.org:8443/secure/useravatar?ownerId=yuval&avatarId=11102', 'yuval@somoto.net', '1981-02-02', 'Developer', 'Really really tall!!', '2013-01-02', 1, 0),
   (8, 'Eyal', 'Yakov', '', 'eyal@somoto.net', '1974-02-11', 'CTO', '', '2010-04-06', 1, 0),
   (9, 'Rani', 'Avnimelech', '', 'ran@genieo.com', '1970-09-12', 'Algorithm', '', '2008-03-17', 1, 0),
   (10, 'Yaron', 'Fishman', '', 'yaron@genieo.com', '1968-09-20', 'R&D leader Genieo', 'gefiltefish', '2006-06-16', 1, 0),
