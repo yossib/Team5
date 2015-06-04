@@ -26,7 +26,7 @@ class Profile extends CI_Controller {
         }
       }
       $data["content"] ="profile_view.php";
-      $this->load->view('layouts/layout_two_coll.php', $data);
+      $this->load->view('layouts/bootstrap.php', $data);
     }else {
       //#TODO redirect 
     }
@@ -41,7 +41,7 @@ class Profile extends CI_Controller {
     }
     
     $data["content"] ="profile_edit.php";
-    $this->load->view('layouts/layout_two_coll.php', $data);
+    $this->load->view('layouts/bootstrap.php', $data);
   }
   
 } 
