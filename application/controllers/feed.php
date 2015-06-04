@@ -16,7 +16,7 @@ class Feed extends CI_Controller{
     if($this->session->userdata('logged_in')){
       $userData = $this->session->userdata('logged_in');
 		}else{
-			redirect('http://localhost/auth/session/google');
+			redirect('/auth/session/google');
 		}
     $upcomingBirthdays = $this->_getUpcomingBirthdays();
     $content = array("content"=>"feed.php","content_data"=>array('upcomingBirthdays' => $upcomingBirthdays),"userData" => $userData);

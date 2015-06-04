@@ -1,32 +1,35 @@
+<style type="text/css">
+  .form-group .value {
+    margin-left: 12px;
+  }
+  .username {
+    font-weight: bold;
+    font-size: 16px;
+  }
+</style>
 <div class="row">
 	  <div class="col-md-8">
 		<form>
 		 <div class="form-group">
-			<div><img src="<?=$avatar?>" /></div>
+			<div><img src="<?=$avatar?>" />&nbsp;&nbsp;&nbsp;&nbsp;<span class="username"><?=$first_name?> <?=$last_name?></span></div>
+       <?php if($edit){ ?> <a href="/profile/edit/<?=$id?>">Edit details</a> <?php }?>
 		  </div>
-		  <div class="form-group">
-			<label for="first_name">First name</label>
-			<div><?=$first_name?></div>
-		  </div>
-		   <div class="form-group">
-			<label for="last_name">Last name</label>
-			<div><?=$last_name?></div>
-		  </div>
+      <br><br>
 		   <div class="form-group">
 			<label for="birthday">Birthday</label>
-			<div><?=$birthday?></div>
+			<div class="value"><?=$birthday?></div>
 		  </div>
 		   <div class="form-group">
 			<label for="position">Position</label>
-			<div><?=$position?></div>
+			<div class="value"><?=$position?></div>
 		  </div>
 		   <div class="form-group">
 			<label for="work_start_date">Work start date</label>
-			<div><?=$work_start_date?></div>
+			<div class="value"><?=$work_start_date?></div>
 		  </div>
 		  <div class="form-group">
 			<label for="password">Email address</label>
-			<div><?=$email?></div>
+			<div class="value"><?=$email?></div>
 		  </div>
 		 
 		 

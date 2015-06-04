@@ -20,7 +20,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <title>Bootstrap 101 Template</title>
+  <title><?php if(isset($title)) echo $title;?></title>
 
   <!-- Bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
@@ -43,6 +43,10 @@
   .panel-body{
     text-align: left
   }
+  ul.nav li{
+    font-weight: bold;
+    margin-top: 20px;
+  }
 </style>
 </head>
 <body>
@@ -61,6 +65,7 @@
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
+        <li><a href="/feed">News Feed</a></li>
       </ul>
     </div><!--/.nav-collapse -->
   </div>

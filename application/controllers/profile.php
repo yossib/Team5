@@ -15,26 +15,33 @@ class Profile extends CI_Controller {
   }
 
   public function view($id){
-  	if (!empty($id)){
-	  	$data["content_data"] =  $this->User->loadToArray($id);
-	  	
-	    $data["content"] ="profile_view.php";
-	    $this->load->view('layouts/layout_two_coll.php', $data);
-  	}else {
-  		//#TODO redirect 
-  	}
+    if (!empty($id)){
+      $data["content_data"] =  $this->User->loadToArray($id);
+      $data["title"] = $data["content_data"]["first_name"] . ' ' . $data["content_data"]["last_name"];
+      $data['content_data']['edit'] = false;
+      if($this->session->userdata('logged_in')){
+        $userData = $this->session->userdata('logged_in');
+        if($userData['id'] == $id){
+          $data['content_data']['edit'] = true;
+        }
+      }
+      $data["content"] ="profile_view.php";
+      $this->load->view('layouts/layout_two_coll.php', $data);
+    }else {
+      //#TODO redirect 
+    }
   }
   
   public function edit($id){
     $post = $this->input->post();
    
     if(!empty($post)){
-    	$isSaved= $this->User->save($id,$post);
-    	$data = $this->User->load($id);
+      $isSaved= $this->User->save($id,$post);
+      $data = $this->User->load($id);
     }
     
-  	$data["content"] ="profile_edit.php";
-  	$this->load->view('layouts/layout_two_coll.php', $data);
+    $data["content"] ="profile_edit.php";
+    $this->load->view('layouts/layout_two_coll.php', $data);
   }
   
 } 

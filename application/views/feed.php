@@ -1,5 +1,5 @@
 <script type="text/javascript">
-  var refresh_url = 'http://localhost/feed/'
+  var refresh_url = '/feed'
   var usedId = <?php echo $userData['id'] ?>;
   $(document).ready(get_latest_posts());
   $(document).ready(function(){
@@ -8,7 +8,7 @@
   });
   function get_latest_posts(){
     console.log('here');
-    var url = "http://localhost/feed/getrecentposts"
+    var url = "/feed/getrecentposts"
 
     $.ajax({
       dataType: "json",
@@ -76,7 +76,7 @@
   function makePost(){
     var content = $("#newPostContent").val();
     console.log(content);
-    var url = "http://localhost/feed/savepost";
+    var url = "/feed/savepost";
     $.post(url , { userId : usedId, content : content }, function(data){
       console.log(data);
       location.href = refresh_url;
@@ -88,7 +88,7 @@
     console.log('here');
     var post = $(this).closest(".post");
     var content = $(".newCommentContent", post).val();
-    var url = "http://localhost/feed/savecomment";
+    var url = "/feed/savecomment";
     postId = post.data().post_id;
     $.post(url , { userId : usedId, "postId" : postId, content : content }, function(data){
       console.log(data);

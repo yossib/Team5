@@ -38,7 +38,7 @@ class Auth extends CI_Controller
             ));
         }
         $this->login($user);
-        redirect("http://localhost/feed");
+        redirect("/feed");
         // Here you should use this information to A) look for a user B) help a new user sign up with existing data.
         // If you store it all in a cookie and redirect to a registration page this is crazy-simple.
 //        echo "<pre>Tokens: ";
