@@ -26,6 +26,9 @@ class Profile extends CI_Controller {
         }
       }
       $data["content"] ="profile_view.php";
+      if(!empty($userData)){
+        $data["userData"] = $userData;
+      }
       $this->load->view('layouts/bootstrap.php', $data);
     }else {
       //#TODO redirect 

@@ -7,11 +7,14 @@
     text-align: left;
   }
 </style>
-<h1>Events</h1>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading" style="font-weight:bold">Events</div>
 <table>
   <tr><th>Event</th><th>Host</th></tr>
 <?php foreach($events as $event){?>
   <tr><td><a href="/event/<?=$event['id'] ?>"><?=$event['short_description']?></a></td><td><a href="/profile/<?=$event['created_by'] ?>"><?=$event['first_name']?> <?=$event['last_name']?></a></td></tr>
 <?php } ?>
 </table>
-<a href="/event/edit">Create New Event</a>
+</div>
+<h4><span class="label label-danger" onClick="location.href='/event/edit'" style="cursor: pointer">Create New Event</span></h4>
