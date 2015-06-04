@@ -1,6 +1,7 @@
 <?php
 
 class User extends  CI_Model {
+  const TABLE = 'users';
   
   protected $id;
   protected $first_name;
@@ -11,7 +12,6 @@ class User extends  CI_Model {
   protected $position;
   protected $description;
   protected $work_start_date ;
-  protected $type;
   protected $password;
   protected $active;
   
@@ -20,6 +20,9 @@ class User extends  CI_Model {
   }
   
   function __get($field_name) {
+    if($field_name == 'db'){
+      return parent::__get('db');
+    }
     return $this->$field_name;
   }
   function __set($field_name, $field_value){
@@ -45,7 +48,7 @@ class User extends  CI_Model {
     }
   }
   function load($id) {
-  	$query = $this->db->getWhere(self::TABLE,array('id' => $id));
+  	$query = $this->db->get_where(self::TABLE,array('id' => $id));
   	
   	foreach ($query->result() as $key=>$value) {
   		$this->__set($key, $value);
@@ -53,8 +56,18 @@ class User extends  CI_Model {
   	
   	return $this;
   }
-  
-  
+
+  function loadToArray($id){
+    $query = $this->db->get_where(self::TABLE,array('id' => $id));
+
+    foreach ($query->result() as $key=>$value) {
+      $this->__set($key, $value);
+    }
+
+    return $query->row_array();
+  }
+
+
   //#TODO validate $params 
   function save($id,$params) {
   	

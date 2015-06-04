@@ -34,7 +34,7 @@
   <![endif]-->
 <style type="text/css">
   body {
-    padding-top: 50px;
+    padding-top: 100px;
   }
   .starter-template {
     padding: 40px 15px;
@@ -49,6 +49,7 @@
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <nav class="navbar navbar-inverse navbar-fixed-top">
+  <img src="https://lh3.googleusercontent.com/-m_0UufORqvs/VW9TtkK8SNI/AAAAAAAAAAY/vBM9GC0JCeQ/w727-h225-no/somoto.gif" style="float: left"/>
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -57,13 +58,9 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Project name</a>
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="/profile/<?=user_id?>">My profile</a></li>
       </ul>
     </div><!--/.nav-collapse -->
   </div>
@@ -73,16 +70,18 @@
 	<div class="row">
 	  <div class="col-md-8">
 	 	<?php
-	    if(!empty($content)) {
-	      $this->load->view($content);
-	    }
+    if(empty($content_data)){
+      $content_data = array();
+    }
+    if(!empty($content)) {
+      $this->load->view($content,$content_data);
+    }
     	?>
       </div>
-	  <div class="col-md-4">.col-md-4</div>
+	  <div class="col-md-4"></div>
 	</div>
   <div class="starter-template">
    
-    <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
   </div>
 </div>
 
