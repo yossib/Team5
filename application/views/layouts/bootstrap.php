@@ -27,6 +27,7 @@
   <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
   <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
   <![endif]-->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 
 <style type="text/css">
   body {
@@ -53,11 +54,16 @@
   .post, #newPost{
     opacity: 0.85;
   }
+
+  .form-group{
+    color: #fff;
+  }
 </style>
 </head>
 <body>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <div class="brand">Somoto Feed, by Team5</div>
 <div class="address-bar">Habarzel 10, Tel Aviv, One Big Happy Family</div>
 

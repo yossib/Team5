@@ -9,18 +9,17 @@
 </style>
 <div class="row">
 	  <div class="col-md-8" style="padding-left:500px; text-align:left; color: #fff">
-			<img src="<?=$avatar?>" style="height: 150px; width: 150px; float: left; margin-left: -250px" />
+			<img src="<?=$avatar?>" style="height: 170px; width: 170px; float: left; margin-left: -250px" />
 			<form>
 		 <div class="form-group">
 			<div>
 				<span class="username"><?=$first_name?> <?=$last_name?></span></div>
        <?php if($edit){ ?> <div class="value">
-				 <h4><span class="label label-primary" onClick="location.href='/profile/edit/<?=$id?>'" style="cursor: pointer">Edit details</span></h4></div> <?php }?>
+				 <span class="label label-primary" onClick="location.href='/profile/edit/<?=$id?>'" style="cursor: pointer">Edit details</span></div> <?php }?>
 		  </div>
-      <br><br>
 		   <div class="form-group">
 			<label for="birthday">Birthday</label>
-			<div class="value"><?= ($birthday == "0000-00-00") ? "Not entered yet" : $birthday ?></div>
+			<div class="value" class=".datepicker"><?= ($birthday == "0000-00-00") ? "Not entered yet" : $birthday ?></div>
 		  </div>
 		   <div class="form-group">
 			<label for="position">Position</label>

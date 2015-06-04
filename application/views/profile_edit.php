@@ -1,4 +1,11 @@
-		<form method="post" action="/profile/edit/<?=$id?>">
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.datepicker').datepicker({
+			dateFormat : 'yy-mm-dd'
+		});
+	})
+</script>
+<form method="post" action="/profile/edit/<?=$id?>">
 		 <input type="hidden" name="id" value="<?=$id?>">
 		  <div class="form-group">
 			<label for="first_name">Name</label>
@@ -10,7 +17,7 @@
 		  </div>
 		   <div class="form-group">
 			<label for="birthday">Birthday</label>
-			<input type="birthday" class="form-control" id="birthday" name="birthday" value="<?=$birthday?>" placeholder="Enter birthday">
+			<input type="birthday" class="form-control datepicker" id="birthday" name="birthday" value="<?=($birthday == '0000-00-00') ? "Enter birthday" : $birthday?>">
 		  </div>
 		   <div class="form-group">
 			<label for="position">Position</label>
@@ -18,7 +25,7 @@
 		  </div>
 		   <div class="form-group">
 			<label for="work_start_date">Work start date</label>
-			<input type="work_start_date" class="form-control" id="work_start_date" name="work_start_date" value="<?=$work_start_date?>" placeholder="Enter start date">
+			<input type="work_start_date" class="form-control datepicker" id="work_start_date" name="work_start_date" value="<?=($work_start_date == '0000-00-00') ? "Enter work start date" : $work_start_date?>" placeholder="Enter start date">
 		  </div>
 		   <div class="form-group">
 			<label for="description">Description</label>
