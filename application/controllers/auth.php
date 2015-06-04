@@ -8,8 +8,8 @@ class Auth extends CI_Controller
     $this->load->spark('oauth2/0.3.1');
 
     $provider = $this->oauth2->provider($provider, array(
-      'id' => '1046919449205-7v1ta3df46jdr8lf2gshqaalmvs958qk.apps.googleusercontent.com',
-      'secret' => 'DLdYqajedDgCrvqSKmIHZjAB',
+      'id' => '914365546920-ni518jj4v9sq616fvn1pbguvdpe5o9at.apps.googleusercontent.com',
+      'secret' => 'k-QIRDb2DfI5Rp1XsIaJi6KA',
     ));
 
     if ( ! $this->input->get('code'))
