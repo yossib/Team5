@@ -31,6 +31,10 @@
       post.data(entry);
       $(".panel-title", post).html(entry.created_at + ", By: " + entry.first_name + " " + entry.last_name);
       $(".panel-body-content", post).html(entry.content);
+      if(entry.avatar){
+        $(".panel-body").append("<img src='" + entry.avatar + "' />");
+      }
+      console.log(entry);
       $.each(entry.comments, function(k, c){
         var comment = $(commentTemplate);
         $(".panel-title", comment).html("By: " + c.first_name + " " + c.last_name);
