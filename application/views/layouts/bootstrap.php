@@ -29,7 +29,14 @@
     text-align: left;
   }
   .panel-body{
-    text-align: left
+    text-align: left;
+    padding-left: 140px;
+  }
+  .panel-body img{
+    height: 100px;
+    width: 100px;
+    margin-left: -120px;
+    float: left;
   }
   ul.nav li{
     font-weight: bold;
