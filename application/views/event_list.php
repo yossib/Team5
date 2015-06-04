@@ -11,9 +11,14 @@
   <!-- Default panel contents -->
   <div class="panel-heading" style="font-weight:bold">Events</div>
 <table>
-  <tr><th>Event</th><th>Host</th></tr>
+  <tr><th>Event</th><th>Host</th><th>Start Time</th><th>End Time</th></tr>
 <?php foreach($events as $event){?>
-  <tr><td><a href="/event/<?=$event['id'] ?>"><?=$event['short_description']?></a></td><td><a href="/profile/<?=$event['created_by'] ?>"><?=$event['first_name']?> <?=$event['last_name']?></a></td></tr>
+  <tr>
+    <td><a href="/event/<?=$event['id'] ?>"><?=$event['short_description']?></a></td>
+    <td><a href="/profile/<?=$event['created_by'] ?>"><?=$event['first_name']?> <?=$event['last_name']?></a></td>
+    <td><?=$event["start_time"]?></td>
+    <td><?=$event["end_time"]?></td>
+  </tr>
 <?php } ?>
 </table>
 </div>
