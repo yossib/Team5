@@ -1,6 +1,10 @@
 <div class="row">
 	  <div class="col-md-8">
 		<form>
+		 <div class="form-group">
+			<label for="avatar">Avatar Url</label>
+			<div><img src="<?=$avatar?>" /></div>
+		  </div>
 		  <div class="form-group">
 			<label for="first_name">Name</label>
 			<div><?=$first_name?></div>
@@ -26,10 +30,7 @@
 			<div><?=$email?></div>
 		  </div>
 		 
-		  <div class="form-group">
-			<label for="avatar">Avatar Url</label>
-			<div><?=$avatar?></div>
-		  </div>
+		 
 		   <div class="form-group">
 			<label for="description">Description</label>
 			<p><?=$description?></p>

@@ -359,6 +359,14 @@ $config['rewrite_short_tags'] = FALSE;
 */
 $config['proxy_ips'] = '';
 
+//facebook
+$config['fb_appid'] = '';
+$config['fb_appsecret'] = '';
+//google
+$config['googleplus_appid'] = '';
+$config['googleplus_appsecret'] = '';
+
 
 /* End of file config.php */
 /* Location: ./application/config/config.php */
+
