@@ -38,8 +38,12 @@ class Event extends CI_Controller {
         $this->db->where('id', $id);
         $this->db->update('events', $post);
       }else{
+        $userData = $this->session->userdata('logged_in');
+        $post['created_by'] = $userData['id'];
         $this->db->insert('events', $post);
         $id = $this->db->insert_id();
+        $attendee_data = array('event_id' => $id, 'user_id' => $userData['id']);
+        $this->db->insert('event_attendees', $attendee_data);
       }
     }
 
